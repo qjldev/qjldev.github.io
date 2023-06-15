@@ -1,44 +1,64 @@
-﻿<!doctype html>
-<html>
+<!doctype html>
+<script src="code/chapter/15_game.js"></script>
+<script src="code/game_levels.js"></script>
+<script src="code/chapter/16_canvas.js"></script>
 <head>
-    <meta charset="UTF-8">
-    <title>欢迎来到我的网站</title>
-    <style>
-        body {
-            background-color: #f2f2f2;
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-            line-height: 1.5;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            margin-top: 0;
-        }
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        p {
-            margin-bottom: 1em;
-        }
-    </style>
+<style>
+	#mytable{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+	}
+	</style>
 </head>
 <body>
-    <header>
-        <h1>江喆大帅比</h1>
-    </header>
-    <main>
-	<p></p>
-	<p></p>
-	<p></p>
-    </main>
+    <div id="mytable">
+        <table width="180" align="center">
+            <tr><td colspan="2"><input type="text" value="0" id="time" disabled=false></td></tr>
+            <tr><td colspan="2"><input type="text" value="死亡次数：0" id="die" disabled=false></td></tr>
+            <tr><td colspan="2"><input type="text" value="当前关卡：1" id="gq" disabled=false></td></tr>
+            <tr width="180" align="center">
+                <td width="90">
+                    <input type="checkbox" id="c1" onclick="speedup()">加速跑</input>
+                </td>
+                <td width="90">
+                    <input type="checkbox" id="c2" onclick="jumpup()">超级跳</input>
+        </td>
+        </tr>
+            </table>
+            </div>
+<script>
+        var timeCount = 0;
+        var sum = 0;
+        var die = 0;
+        var gq = 1;
+
+        function timecount() {
+            document.getElementById("time").value = "时间：" + timeCount.toFixed(1);
+            timeCount = timeCount + 0.1;
+            setTimeout("timecount()", 100);
+        }
+        timecount();
+    </script>
+    <script>
+        runGame(GAME_LEVELS, CanvasDisplay);
+    </script>
+    <script>
+        function speedup(){
+            if(c1.checked==false){
+                playerXSpeed=7;
+            }else{
+                playerXSpeed=14;
+            }
+        }
+        function jumpup(){
+            if(c2.checked==false){
+                jumpSpeed=17;
+            }else{
+                jumpSpeed=24;
+            }
+        }
+    </script>
+
+    
 </body>
-</html>
